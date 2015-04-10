@@ -16,17 +16,20 @@ public class FeatureMining {
 
 	public static void main(String[] args) throws IOException {
 		
+		
+		
 		// directory containing our review database (json files) 
-		String dataPath = "D:\\Sachou\\UCL\\FeatureMiner\\data\\small_laptop_data";
+		String dataPath = "D:/Sachou/UCL/feature-extraction-from-product-review_data-mining-project/data/tablets";
 		
 		// path to product reviews (several reviews relative to the same product, in a json file)
-		String reviewPath = "D:\\Sachou\\UCL\\FeatureMiner\\data\\one_laptop_review\\B0000DHQ23.json";
+		String reviewPath = "D:/Sachou/UCL/feature-extraction-from-product-review_data-mining-project/data/tablets/B00AA6OVAO.json";
 		
 		// extracting the possible features from our database
 		FeatureExtractor extractor = new FeatureExtractor();
 		ArrayList<String> features = extractor.extractFeatures(dataPath);
 		
 		for(String feat: features){
+			
 			System.out.println(feat);
 		}
 		
@@ -41,16 +44,10 @@ public class FeatureMining {
 		// Finding the features rating given the opinions
 		FeatureRater rater = new FeatureRater(features);
 		Summary summary = rater.summarize(opinions);
+		
 
 		// Printing out the summary
-		for(String feat: summary.keySet()) {
-			Opinion op = summary.get(feat);
-			System.out.println("### "+feat+" --> "+op.getMean()+" ###");
-			for(Sentiment sen: op){
-				System.out.println("- "+sen.getSentence());
-				System.out.println("--> "+sen.getRating());
-			}
-		}
+		System.out.println(summary);
 		
 	}
 	

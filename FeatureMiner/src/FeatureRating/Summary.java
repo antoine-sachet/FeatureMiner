@@ -25,4 +25,17 @@ public class Summary extends HashMap<String, Opinion> {
 			this.put(feature, op);
 		}
 	}
+	
+	public String toString() {
+		String str = "";
+		for(String feat: this.keySet()) {
+			Opinion op = this.get(feat);
+			str += ("### "+feat+" --> "+op.getMean()+" ###")+"\n";
+			for(Sentiment sen: op){
+				str += "- "+sen.getSentence()+"\n";
+				str += "--> "+sen.getRating()+"\n";
+			}
+		}
+		return(str);
+	}
 }
