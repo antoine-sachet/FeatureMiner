@@ -111,11 +111,16 @@ public class FeatureExtractor {
 				// System.out.print("  pattern " + patternCount + ":  ");
 				//itemset.print();
 				int[] items = itemset.getItems();
+				String word = "";
 				for(int i = 0; i < items.length; i++) {
-					String word = converter.lookUpDictionary(items[i]);
-					features.add(word);
+					if(i==0){
+						word=converter.lookUpDictionary(items[i]);
+					} else {
+						word += " "+converter.lookUpDictionary(items[i]);						
+					}
 					//System.out.print(word + " ");
 				}
+				features.add(word);
 				// print the support of this itemset
 				//System.out.print("\t\tsupport :  "+ itemset.getRelativeSupportAsString(apriori.getDatabaseSize()));				
 			}
