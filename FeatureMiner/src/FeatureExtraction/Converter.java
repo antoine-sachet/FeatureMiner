@@ -26,6 +26,16 @@ public class Converter {
 		outputLists = new ArrayList<List<Integer>>();
 	}
 	
+	public Converter() {
+		
+	}
+	
+	public void ini( List<List<String>> input, String inputFilePath) throws FileNotFoundException {
+		//fstream = new FileInputStream(inputFilePath);
+		inputLists = input;
+		outputLists = new ArrayList<List<Integer>>();
+	}
+	
 	public List<List<Integer>> getOutputList() {
 		
 		int count = 1;

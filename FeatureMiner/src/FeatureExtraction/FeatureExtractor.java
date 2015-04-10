@@ -14,83 +14,11 @@ import Tagger.Tagger;
 public class FeatureExtractor {
 
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		//extract potential features
-		String inputFile = "D:\\Sachou\\UCL\\FeatureMiner\\data\\small_laptop_data";
-		Tagger myTagger = new Tagger(inputFile);
-		List<ArrayList<Bag>> reviews = myTagger.getReviews();
-		List<List<String>> input = new ArrayList<List<String>> ();
-		for(ArrayList<Bag> bags : reviews) {
-			for(Bag bag : bags) {
-				if (bag.features.size() != 0) {
-					input.add(bag.features);
-					System.out.println(bag.features);
-				}
-			}
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*
-		//String inputFilePath = "testOutput.txt";
-		
-		
-		
-		//old implementation
-		//String input = outputFile.getAbsolutePath();
-		//create test input
-		List<List<String>> input = new ArrayList<List<String>> ();
-		BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-		String line;
-		// for each line (transactions) until the end of the file
-		while (((line = reader.readLine()) != null)) { 
-			// if the line is  a comment, is  empty or is a
-			// kind of metadata
-			if (line.isEmpty() == true ||
-					line.charAt(0) == '#' || line.charAt(0) == '%'
-							|| line.charAt(0) == '@') {
-				continue;
-			}
-			// split the line according to spaces
-			String[] lineSplited = line.split(",");
-			
-			List<String> temp = new ArrayList<String>();
-			for (int i=0; i< lineSplited.length; i++) { 
-				String item = lineSplited[i];
-				if(item != null)
-					temp.add(item);
-			}
-			input.add(temp);
-		}
-		
-		//for (List<Integer> ii : input) {
-		//	for (Integer iii : ii) {
-		//		System.out.println(iii);
-		//	}
-		//	System.out.println("---------------");
-		//}
-		
-		reader.close();
-		*/
-		
-		Converter converter = new Converter(input, inputFile);
-		List<List<Integer>> outputList = converter.getOutputList();
-		String output = null;
-		
-		double minsup = 0.01; // means a minsup of 2 transaction (we used a relative support)
-		
-		// Applying the Apriori algorithm
+		String inputPath = "D:\\Sachou\\UCL\\FeatureMiner\\data\\small_laptop_data";
+		FeatureExtractor extractor = new FeatureExtractor();
+		Converter converter = new Converter();
 		AlgoApriori apriori = new AlgoApriori();
-		Itemsets result = apriori.runAlgorithm(minsup, outputList, output, true);
-		//apriori.printStats();
-		//result.printItemsets(apriori.getDatabaseSize());
+		Itemsets result = extractor.extract(inputPath, converter, apriori);
 		
 		System.out.println("--------------");
 		int patternCount = 0;
@@ -113,7 +41,7 @@ public class FeatureExtractor {
 					System.out.print(word + " ");
 				}
 				// print the support of this itemset
-				System.out.print("support :  "
+				System.out.print("\t\tsupport :  "
 						+ itemset.getRelativeSupportAsString(apriori.getDatabaseSize()));
 				patternCount++;
 				System.out.println(" ");
@@ -121,5 +49,37 @@ public class FeatureExtractor {
 			}
 			levelCount++;
 		}
+	}
+	
+	public Itemsets extract(String inputFile, Converter converter, AlgoApriori apriori) throws IOException {
+		//extract potential features
+				Tagger myTagger = new Tagger(inputFile);
+				List<ArrayList<Bag>> reviews = myTagger.getReviews();
+				List<List<String>> input = new ArrayList<List<String>> ();
+				for(ArrayList<Bag> bags : reviews) {
+					for(Bag bag : bags) {
+						if (bag.features.size() != 0) {
+							input.add(bag.features);
+							//System.out.println(bag.features);
+						}
+					}
+				}
+				
+				converter.ini(input, inputFile);
+				List<List<Integer>> outputList = converter.getOutputList();
+				String output = null;
+				
+				double minsup = 0.01; // means a minsup of 2 transaction (we used a relative support)
+				
+				// Applying the Apriori algorithm
+				Itemsets result = apriori.runAlgorithm(minsup, outputList, output, true);
+				//apriori.printStats();
+				//result.printItemsets(apriori.getDatabaseSize());
+				return(result);
+
+	}
+	
+	public Itemsets extract(String inputPath) throws IOException{
+		return(extract(inputPath, new Converter(), new AlgoApriori()));
 	}
 }
