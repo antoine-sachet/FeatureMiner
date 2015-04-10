@@ -11,16 +11,27 @@ public class FeatureRater {
 		this.features = features;
 	}
 
-	public Summary analyseReview(ArrayList<Opinion> ops) {
-		
-		
+	/**
+	 * Matches features with sentences in opinions.
+	 * Returns a summary, i.e. a HashMap matching features to opinion
+	 * @param ops
+	 * @return
+	 */
+	public Summary summarize(ArrayList<Opinion> ops) {
+		String sentence;
+		Summary summary = new Summary();
 		for(Opinion op: ops){
-			for(String feat: features){
-				
+			for(Sentiment pair: op) {
+				sentence = pair.getLeft();
+				for(String feat: features){
+					if(sentence.contains(feat)) {
+						summary.add(feat, pair);
+					}
+				}
 			}
 		}
-		
-		return null;
+		return summary;
 	}
+
 }
 

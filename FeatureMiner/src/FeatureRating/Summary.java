@@ -2,8 +2,6 @@ package FeatureRating;
 
 import java.util.HashMap;
 
-import FeatureExtraction.Pair;
-
 /**
  * A summary matches each feature (key) to its:
  * rating (double)
@@ -12,14 +10,19 @@ import FeatureExtraction.Pair;
  *
  */
 @SuppressWarnings("serial")
-public class Summary extends HashMap<String, Pair<Double, Opinion>> {
+public class Summary extends HashMap<String, Opinion> {
 
 	public Summary() {
 		super();
 	}
-	
-	public void put(String feature, Opinion op) {
-		this.put(feature, new Pair(op.getMean(), op));
-	}
 
+	public void add(String feature, Sentiment sen) {
+		if(this.containsKey(feature)){
+			this.get(feature).add(sen);
+		} else {
+			Opinion op = new Opinion();
+			op.add(sen);
+			this.put(feature, op);
+		}
+	}
 }

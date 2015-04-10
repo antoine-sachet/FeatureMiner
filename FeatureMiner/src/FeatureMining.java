@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
 import FeatureExtraction.FeatureExtractor;
 import FeatureRating.FeatureRater;
 import FeatureRating.Opinion;
+import FeatureRating.Sentiment;
 import FeatureRating.SentimentAnalyser;
 import FeatureRating.Summary;
 import Tagger.Util;
@@ -25,6 +26,10 @@ public class FeatureMining {
 		FeatureExtractor extractor = new FeatureExtractor();
 		ArrayList<String> features = extractor.extractFeatures(dataPath);
 		
+		for(String feat: features){
+			System.out.println(feat);
+		}
+		
 		// loading up the reviews, each one in a string
 		ArrayList<String> reviews = getRawReviews(reviewPath);
 		
@@ -35,9 +40,17 @@ public class FeatureMining {
 		
 		// Finding the features rating given the opinions
 		FeatureRater rater = new FeatureRater(features);
-		Summary summary = rater.analyseReview(opinions);
-				
-		String str = "This laptop is great but the screen is too small. The keyboard is well designed. The battery life is about 3 hours gaming, which is rather good.";
+		Summary summary = rater.summarize(opinions);
+
+		// Printing out the summary
+		for(String feat: summary.keySet()) {
+			Opinion op = summary.get(feat);
+			System.out.println("### "+feat+" --> "+op.getMean()+" ###");
+			for(Sentiment sen: op){
+				System.out.println("- "+sen.getSentence());
+				System.out.println("--> "+sen.getRating());
+			}
+		}
 		
 	}
 	
