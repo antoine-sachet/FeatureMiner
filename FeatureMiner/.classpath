@@ -18,5 +18,9 @@
 	<classpathentry kind="lib" path="TaggerLib/stanford-postagger-3.5.1-sources.jar"/>
 	<classpathentry kind="lib" path="TaggerLib/stanford-postagger-3.5.1.jar"/>
 	<classpathentry kind="lib" path="TaggerLib/stanford-postagger.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-corenlp-3.5.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-corenlp-3.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-corenlp-3.5.1-models.jar"/>
+	<classpathentry kind="lib" path="lib/ejml-0.23.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
