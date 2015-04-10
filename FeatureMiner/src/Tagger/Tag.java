@@ -1,8 +1,6 @@
 package Tagger;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
  
@@ -21,7 +19,7 @@ public class Tag {
 	}
 	
 	public ArrayList<String> collect(String res){
-		ArrayList<String> noun=new ArrayList();
+		ArrayList<String> noun=new ArrayList<String>();
 		String[] sen=res.split(" ");
 	
 		for(int i=0;i<sen.length;i++){

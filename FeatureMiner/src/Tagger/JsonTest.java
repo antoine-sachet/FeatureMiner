@@ -38,7 +38,7 @@ public class JsonTest {
         map2.put("sex", "male");
         map2.put("age", "24");
 
-        List<Map> list = new ArrayList<Map>();
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         list.add(map1);
         list.add(map2);
 

@@ -2,22 +2,13 @@ package Tagger;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 public class Tagger {
 	//static JSONObject reviews;
-	private static List<JSONObject> productReviews;
+	private List<JSONObject> productReviews;
 	
 	public Tagger(String filePath) {
 		productReviews = new ArrayList<JSONObject> ();
@@ -33,8 +24,8 @@ public class Tagger {
 		}
 	}
 	
-	public static ArrayList<ArrayList<Bag>> getReviews(){
-		ArrayList<ArrayList<Bag>> pro=new ArrayList();
+	public ArrayList<ArrayList<Bag>> getReviews(){
+		ArrayList<ArrayList<Bag>> pro=new ArrayList<ArrayList<Bag>>();
 		for(JSONObject reviews : productReviews) {
 			JSONArray array=reviews.getJSONArray("Reviews");
 			int size = array.size();
@@ -44,9 +35,9 @@ public class Tagger {
 				JSONObject jsonObject = array.getJSONObject(i);
 				//System.out.println("[" + i + "]content=" + jsonObject.get("Content"));
 				Tag tag1=new Tag();
-				ArrayList<Bag> rev = new ArrayList();
+				ArrayList<Bag> rev = new ArrayList<Bag>();
 				String t1 = tag1.analysis(jsonObject.get("Content").toString());
-				String t3 = jsonObject.get("Content").toString();
+				//String t3 = jsonObject.get("Content").toString();
 				String[] p1 = t1.split("\\.\\_\\.");
 							
 				for(int y=0;y<p1.length;y++){

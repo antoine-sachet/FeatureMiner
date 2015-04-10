@@ -1,23 +1,17 @@
 package FeatureExtraction;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import Tagger.Bag;
-import Tagger.Tagger;
 import AprioriAlgorithm.AlgoApriori;
 import AprioriAlgorithm.Itemset;
 import AprioriAlgorithm.Itemsets;
+import Tagger.Bag;
+import Tagger.Tagger;
 
-public class FeatureExtracctor {
+public class FeatureExtractor {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
