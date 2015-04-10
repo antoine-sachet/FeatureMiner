@@ -9,7 +9,8 @@ import net.sf.json.JSONObject;
 public class Tagger {
 	//static JSONObject reviews;
 	private List<JSONObject> productReviews;
-	
+	private Tag tag;
+
 	public Tagger(String filePath) {
 		productReviews = new ArrayList<JSONObject> ();
 		File dir = new File(filePath);
@@ -22,9 +23,12 @@ public class Tagger {
 			productReviews.add(JSONObject.fromObject(str));
 			//System.out.println("im in");
 		}
+		
+		this.tag = new Tag();
 	}
 	
 	public ArrayList<ArrayList<Bag>> getReviews(){
+		
 		ArrayList<ArrayList<Bag>> pro=new ArrayList<ArrayList<Bag>>();
 		for(JSONObject reviews : productReviews) {
 			JSONArray array=reviews.getJSONArray("Reviews");
@@ -34,9 +38,9 @@ public class Tagger {
 			for(int  i = 0; i < size; i++) {
 				JSONObject jsonObject = array.getJSONObject(i);
 				//System.out.println("[" + i + "]content=" + jsonObject.get("Content"));
-				Tag tag1=new Tag();
+
 				ArrayList<Bag> rev = new ArrayList<Bag>();
-				String t1 = tag1.analysis(jsonObject.get("Content").toString());
+				String t1 = tag.analysis(jsonObject.get("Content").toString());
 				//String t3 = jsonObject.get("Content").toString();
 				String[] p1 = t1.split("\\.\\_\\.");
 							
@@ -44,7 +48,7 @@ public class Tagger {
 					Bag b1=new Bag();
 					b1.setID(y);
 					b1.setSentence(p1[y]);
-					b1.features=tag1.collect(p1[y]);
+					b1.features=tag.collect(p1[y]);
 					rev.add(b1);
 				}
 							

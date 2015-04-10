@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
  
 public class Tag {
+
+	MaxentTagger tagger;
+
 	public String analysis(String content){
  
-		// Initialize the tagger
-		MaxentTagger tagger = new MaxentTagger("taggers/english-left3words-distsim.tagger");
 		// The sample string
 		String sample =content;
 		// The tagged string
@@ -28,7 +29,12 @@ public class Tag {
 			noun.add(sen[i].substring(0,sen[i].length()-3).toLowerCase());
 		}
 	}
-	
 	return noun;
+	}
+	
+	public Tag() {
+		// Initialize the tagger
+		this.tagger = new MaxentTagger("taggers/english-left3words-distsim.tagger");
+
 	}
 }
