@@ -29,7 +29,7 @@ public class Example {
 
 		// computing another summary 
 		// (the feature extraction has already been done)
-		reviewPath = "D:\\Sachou\\UCL\\FeatureMiner\\data\\full_laptop_data\\B009AEPI90.json";
+		reviewPath = "data/full_laptop_data/B009AEPI90.json";
 		Summary summary2 = miner.mineFeatures(reviewPath, !verbose);
 		System.out.println(summary2);
 
