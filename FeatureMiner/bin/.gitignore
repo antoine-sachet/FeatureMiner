@@ -1,5 +1,5 @@
-/FeatureRating
-/FeatureExtraction
-/Tagger
-/AprioriAlgorithm
-/FeatureMining.class
+AprioriAlgorithm/
+FeatureExtraction/
+FeatureRating/
+Tagger/
+FeatureMining.class
