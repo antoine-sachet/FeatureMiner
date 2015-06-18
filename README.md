@@ -92,7 +92,7 @@ Notice the complex features at the end!
 
 Then, the review is parsed and analysed, resulting in Summary object which can be further manipulated and from which structured data can be easily extracted.
 
-Printing the Summary to the console yeilds a raw report looking like this:
+Printing the Summary to the console yields a raw report looking like this:
 
 ```
 **### graphics : 1 positive / 1 negative ###**
@@ -112,7 +112,7 @@ Printing the Summary to the console yeilds a raw report looking like this:
 *--> positive*
 ```
 
-This allows a user to understand at a glance what the strengths/weaknesses of the product are. Obviously, the data printed here his programmatically accessible in a structured way in the Summary object.
+This allows a user to understand at a glance what the strengths/weaknesses of the product are. Obviously, the data printed here are programmatically accessible in a structured way via the Summary object.
 
  
  
