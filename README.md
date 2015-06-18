@@ -1,8 +1,8 @@
 # FeatureMiner: Automatic feature extraction and rating from online reviews
 
-This is a project completed in April 2015 for the *Information Retrieval and Data Mining* at UCL.
+This is a project completed in April 2015 for the *Information Retrieval and Data Mining* course at UCL.
 
-One most online store, products are rated *as a whole* and given a single rating. On Amazon for example, it takes the form of 1-to-5 stars opinion.
+On most online store, products are rated *as a whole* and given a single rating. On Amazon for example, it takes the form of 1-to-5 stars opinion.
 
 So what do you do when you want to buy something and you see it's rated 3 stars? Well, this is highly uninformative. So you scroll down and check out the reviews.
 
@@ -31,7 +31,7 @@ Now that we now what to look for, we can easily find in which sentence a reviewe
 
 Note that the code is designed to be used like a library. Using the methods from the `FeatureMining` class, one can build a summary by simply giving a path to the reviews, which should be in a json format. 
 
-This will result in a summary object (from the `Summary` class) which can be further manipulated with the provided methods. 
+This will result in a summary object (from the `Summary` class) which can be further manipulated easily since it extends `HashMap`!
 
 Here is a minimal example, where `dataPath` is the path to the directory where all the reviews are, and `reviewPath` is the path to the single review we want to summarize:
 
